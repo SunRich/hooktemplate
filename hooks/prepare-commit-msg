@@ -20,6 +20,8 @@
 # The third example adds a Signed-off-by line to the message, that can
 # still be edited.  This is rarely a good idea.
 
+. .git/hooks/check_merge_dev.sh
+
 if [[ $2 == "merge" ]]; then
     merge_branch=$(cat $1| head -n 1 | grep "'.*'" -oE )
     if [[ $merge_branch = "'dev'" || $merge_message = "'origin/dev'" ]] ; then

@@ -18,7 +18,4 @@
 #
 # This sample shows how to prevent push of commits where the log message starts
 # with "WIP" (work in progress).
-if [ -f ".git/merge_dev.lock" ];then
-  echo "本地合并了dev分支，已经被锁定，请联系你们的大佬"
-  exit 1
-fi
+. .git/hooks/check_merge_dev.sh
