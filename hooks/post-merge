@@ -1,0 +1,13 @@
+#!/bin/sh
+exec < /dev/tty
+
+# Get the name of the branch that was just merged
+reflog_message=$(git reflog -1)
+merged_branch_name=$(echo $reflog_message | cut -d" " -f 4 | sed "s/://")
+echo $PWD
+# if the merged branch was master - don't do anything
+if [[ "$merged_branch_name" == "dev" || "$merged_branch_name" == "origin/dev" ]]; then
+    echo "不能合并dev分支的代码,出问题要打屁屁的哦，已经上报，请联系管理员"
+    touch ./push.lock
+    exit 1
+fi
