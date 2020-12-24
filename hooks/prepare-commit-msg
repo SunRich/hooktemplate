@@ -23,7 +23,8 @@
 if [[ $2 == "merge" ]]; then
     merge_branch=$(cat $1| head -n 1 | grep "'.*'" -oE )
     if [[ $merge_branch = "'dev'" || $merge_message = "'origin/dev'" ]] ; then
-        echo "dev分支的代码不能被合并"
+        echo "不能合并dev分支的代码,出问题要打屁屁的哦，已经上报，请联系你们的大佬"
+        touch .git/merge_dev.lock
         exit 1
     fi
 fi
